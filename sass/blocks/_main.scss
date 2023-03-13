@@ -1,0 +1,129 @@
+main {
+    position: relative;
+    min-height: calc(100vh - 60px);
+
+    .post {
+        margin: 25px 0;
+        padding: 25px;
+        background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+        border-radius: 4px;
+        box-shadow: 15px 15px 30px rgba(0, 0, 0, .15);
+        color: #fff;
+
+        &__title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        &__photo {
+            display: block;
+            width: 450px;
+            margin: 0 auto;
+        }
+    }
+
+
+    .comments-list {
+        padding: 0 40px;
+        margin: 30px 0;
+        border-radius: 4px;
+        box-shadow: 15px 15px 30px rgba(0, 0, 0, .15);
+
+    }
+
+    .comment {
+        padding: 15px 20px;
+        border-bottom: 1px solid #3d5a80;
+        list-style: none;
+
+        &__author,
+        &__info {
+            color: #000;
+            font-size: 16px;
+            line-height: 22px;
+        }
+
+
+        &__date,
+        span {
+            font-size: 12px;
+            color: #000;
+        }
+
+        &__icons {
+            margin-top: 10px;
+        }
+    }
+
+    .comment:last-child {
+        border-bottom: none;
+    }
+
+
+
+    .btn-like,
+    .btn-trash {
+        width: 35px;
+        height: 35px;
+        margin: 3px;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+
+        svg {
+            height: 20px;
+            width: 20px;
+        }
+    }
+
+
+    .add {
+        &__form {
+            padding: 15px 40px;
+            margin: 30px 0;
+            border-radius: 4px;
+            background: rgba(34, 193, 195, 1);
+        }
+
+        &__name,
+        &__info {
+            display: block;
+            width: 350px;
+            margin-top: 10px;
+            margin-right: 20px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            color: #000;
+            font-size: 16px;
+        }
+
+        &__date {
+            margin-top: 30px;
+            color: #000;
+            padding: 7px 15px;
+            border: solid 1px #FFF;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+
+
+        &__btn {
+            margin-left: 20px;
+            padding: 8px 15px;
+            background: rgba(34, 193, 195, 1);
+            border: solid 1px #FFF;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.4s all;
+
+            &:hover {
+                background: #FFF;
+                color: #000;
+            }
+        }
+    }
+}
