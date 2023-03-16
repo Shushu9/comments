@@ -76,6 +76,10 @@ main {
         }
     }
 
+    .liked svg {
+        fill: red;
+    }
+
 
     .add {
         &__form {
