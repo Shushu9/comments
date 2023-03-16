@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
-    //функция создания нового комментария 
+
 
     function addNewComment(author, info, date, time) {
 
@@ -61,30 +61,6 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    function createNewComment(event) {
-        event.preventDefault(); // уберем перезагрузку страницы после сабмита
-
-        let name = document.querySelector('.add__name');
-        let info = document.querySelector('.add__info');
-        let date = document.querySelector('.add__date').value;
-        let time = '';
-
-        console.log(date);
-
-
-
-        time = setTime();
-
-        addNewComment(name.value, info.value, date, time)
-
-        name.value = '';
-        info.value = '';
-    }
-
-
-    commentsForm.addEventListener('submit', createNewComment);
-
-
     //Установка времени 
 
     function setTime() {
@@ -101,12 +77,57 @@ window.addEventListener('DOMContentLoaded', function () {
 
     // Установка даты 
 
-    function setDate {
+    function setDate() {
 
-        let now = new Date(),
-        if (date == '') {
-            date == 'Сегодня';
+        let now = new Date();
+        let date = document.querySelector('.add__date');
+
+        let userDateDay = date.value.split('-')[2];
+        let userDateMonth = date.value.split('-')[1] - 1;
+        let userDateYear = date.value.split('-')[0];
+        let userDate = new Date(userDateYear, userDateMonth, userDateDay);
+
+
+        if (date.value == '') { // если пользователь не ввел дату
+            date.value = '';
+            return 'Сегодня';
+        } else if ((now.getFullYear() == userDate.getFullYear()) && (now.getMonth() == userDate.getMonth()) && (now.getDate() == userDate.getDate())) {
+            date.value = ''; // если пользователь ввел сегодняшнюю дату
+            return 'Сегодня';
+        } else if ((now.getFullYear() == userDate.getFullYear()) && (now.getMonth() == userDate.getMonth()) && ((now.getDate() - userDate.getDate()) == 1)) {
+            date.value = ''; // если пользователь ввел вчерашнюю дату
+            return 'Вчера';
+        } else {
+            // если пользователь ввел произвольную дату
+            userDateMonth += 1;
+            userDateDay = (`${userDateDay}`.length < 2) ? `0${userDateDay}` : userDateDay;
+            userDateMonth = (`${userDateMonth}`.length < 2) ? `0${userDateMonth}` : userDateMonth;
+            date.value = '';
+            return `${userDateDay}:${userDateMonth}:${userDateYear}`;
         }
     }
+
+
+    function createNewComment(event) {
+        event.preventDefault();
+
+        let name = document.querySelector('.add__name');
+        let info = document.querySelector('.add__info');
+        let date;
+        let time;
+
+
+        time = setTime();
+        date = setDate()
+
+        addNewComment(name.value, info.value, date, time)
+
+        name.value = '';
+        info.value = '';
+    }
+
+
+    commentsForm.addEventListener('submit', createNewComment);
+
 })
 
